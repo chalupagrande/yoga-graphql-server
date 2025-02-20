@@ -1,0 +1,43 @@
+{
+  "name": "yoga-graphql-server",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "start": "node dist/server.js",
+    "dev": "nodemon -r tsconfig-paths/register src/server.ts",
+    "codegen:generate": "graphql-codegen",
+    "prisma:migrate:dev": "prisma migrate dev --schema=./src/prisma/schema.prisma",
+    "prisma:migrate:reset": "prisma migrate reset --schema=./src/prisma/schema.prisma",
+    "prisma:migrate:deploy": "prisma migrate deploy --schema=./src/prisma/schema.prisma",
+    "prisma:db:push": "prisma db push --schema=./src/prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=./src/prisma/schema.prisma",
+    "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma",
+    "prisma:seed": "tsx --env-file=.env ./src/prisma/seed.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.4.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "graphql": "^16.10.0",
+    "graphql-scalars": "^1.24.1",
+    "graphql-yoga": "^5.12.0",
+    "helmet": "^8.0.0",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "devDependencies": {
+    "@eddeee888/gcg-typescript-resolver-files": "^0.12.0",
+    "@graphql-codegen/cli": "^5.0.5",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "nodemon": "^3.1.9",
+    "prisma": "^6.4.0",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,6 @@
+# codegen.yml
+schema: 'src/graphql/**/*.graphql'
+generates:
+  src/graphql/__generated__:
+    preset: '@eddeee888/gcg-typescript-resolver-files'
+    watchPattern: 'src/graphql/**/*.mappers.ts'
