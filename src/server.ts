@@ -13,21 +13,18 @@ const port = process.env.PORT || 3000;
 
 const graphqlSchema = createSchema({ typeDefs, resolvers })
 interface GraphQLContext extends YogaInitialContext {
-  prisma: PrismaClient;
+  something: number
+
 }
 
 const yoga = createYoga<GraphQLContext>({
   schema: graphqlSchema,
-  context: ({ request }) => {
-    return {
-      request,
-      prisma
-    }
+  context: {
+    something: 10
   }
 });
 
 const server = createServer(yoga)
-
 server.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
