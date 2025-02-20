@@ -5,7 +5,7 @@ import { typeDefs } from '@/graphql/__generated__/typeDefs.generated'
 import { resolvers } from '@/graphql/__generated__/resolvers.generated'
 import { PrismaClient } from "@prisma/client";
 import { createServer } from "node:http";
-import { prisma } "@/prisma/client"
+import { prisma } from "@/prisma/client"
 
 dotenv.config();
 
@@ -18,7 +18,7 @@ interface GraphQLContext extends YogaInitialContext {
 
 const yoga = createYoga<GraphQLContext>({
   schema: graphqlSchema,
-  context: function ({ request }) {
+  context: ({ request }) => {
     return {
       request,
       prisma
