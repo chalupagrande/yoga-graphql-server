@@ -18,7 +18,7 @@ app.get("/", (req: Request, res: Response) => {
 const graphqlSchema = createSchema({ typeDefs, resolvers })
 const yogaRouter = express.Router()
 interface GraphQLContext extends YogaInitialContext {
-  prisma?: PrismaClient;
+  prisma: PrismaClient;
 }
 
 // Investigate Content Security Policy
@@ -35,6 +35,10 @@ yogaRouter.use(
 )
 const yoga = createYoga<GraphQLContext>({
   schema: graphqlSchema,
+  context: request => ({
+    request,
+    prisma: new PrismaClient()
+  })
 });
 
 yogaRouter.use(yoga.graphqlEndpoint, yoga)
