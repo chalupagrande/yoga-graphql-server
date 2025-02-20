@@ -4,7 +4,7 @@ import helmet from "helmet";
 import { createYoga, createSchema, YogaInitialContext } from 'graphql-yoga'
 import { typeDefs } from '@/graphql/__generated__/typeDefs.generated'
 import { resolvers } from '@/graphql/__generated__/resolvers.generated'
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/client";
 
 dotenv.config();
 
@@ -35,10 +35,7 @@ yogaRouter.use(
 )
 const yoga = createYoga<GraphQLContext>({
   schema: graphqlSchema,
-  context: request => ({
-    request,
-    prisma: new PrismaClient()
-  })
+  context: { prisma }
 });
 
 yogaRouter.use(yoga.graphqlEndpoint, yoga)
