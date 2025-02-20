@@ -18,7 +18,7 @@ interface GraphQLContext extends YogaInitialContext {
 
 const yoga = createYoga<GraphQLContext>({
   schema: graphqlSchema,
-  context: ({ request }) => {
+  context: function ({ request }) {
     return {
       request,
       prisma
